@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 import { ADD_COMMENT } from '../../utils/mutations';
+
+import Auth from '../../utils/auth';
 
 const CommentForm = ({ thoughtId }) => {
   const [commentText, setCommentText] = useState('');
@@ -14,7 +17,12 @@ const CommentForm = ({ thoughtId }) => {
 
     try {
       const { data } = await addComment({
-        variables: { thoughtId, commentText },
+        variables: {
+          thoughtId,
+          commentText,
+          // Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's username 
+          commentAuthor: Auth.getProfile().authenticatedPerson.username
+        },
       });
 
       setCommentText('');
@@ -35,35 +43,45 @@ const CommentForm = ({ thoughtId }) => {
   return (
     <div>
       <h4>What are your thoughts on this thought?</h4>
-      <p
-        className={`m-0 ${
-          characterCount === 280 || error ? 'text-danger' : ''
-        }`}
-      >
-        Character Count: {characterCount}/280
-        {error && <span className="ml-2">Something went wrong...</span>}
-      </p>
-      <form
-        className="flex-row justify-center justify-space-between-md align-center"
-        onSubmit={handleFormSubmit}
-      >
-        <div className="col-12 col-lg-9">
-          <textarea
-            name="commentText"
-            placeholder="Add your comment..."
-            value={commentText}
-            className="form-input w-100"
-            style={{ lineHeight: '1.5' }}
-            onChange={handleChange}
-          ></textarea>
-        </div>
 
-        <div className="col-12 col-lg-3">
-          <button className="btn btn-primary btn-block py-3" type="submit">
-            Add Comment
-          </button>
-        </div>
-      </form>
+      {Auth.loggedIn() ? (
+        <>
+          <p
+            className={`m-0 ${
+              characterCount === 280 || error ? 'text-danger' : ''
+            }`}
+          >
+            Character Count: {characterCount}/280
+            {error && <span className="ml-2">{error.message}</span>}
+          </p>
+          <form
+            className="flex-row justify-center justify-space-between-md align-center"
+            onSubmit={handleFormSubmit}
+          >
+            <div className="col-12 col-lg-9">
+              <textarea
+                name="commentText"
+                placeholder="Add your comment..."
+                value={commentText}
+                className="form-input w-100"
+                style={{ lineHeight: '1.5', resize: 'vertical' }}
+                onChange={handleChange}
+              ></textarea>
+            </div>
+
+            <div className="col-12 col-lg-3">
+              <button className="btn btn-primary btn-block py-3" type="submit">
+                Add Comment
+              </button>
+            </div>
+          </form>
+        </>
+      ) : (
+        <p>
+          You need to be logged in to share your thoughts. Please{' '}
+          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+        </p>
+      )}
     </div>
   );
 };

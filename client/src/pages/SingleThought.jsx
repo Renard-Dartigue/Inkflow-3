@@ -1,4 +1,4 @@
-// Import the `useParams()` hook from React Router
+// Import the `useParams()` hook
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
@@ -12,7 +12,7 @@ const SingleThought = () => {
   const { thoughtId } = useParams();
 
   const { loading, data } = useQuery(QUERY_SINGLE_THOUGHT, {
-    // Pass the `thoughtId` URL parameter into query to retrieve this thought's data
+    // pass URL parameter
     variables: { thoughtId: thoughtId },
   });
 
