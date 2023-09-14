@@ -21,7 +21,7 @@ body{
     max-width: 1050px;
 }
 section{
-    background: #fff;
+    background: #fff !important;
     border-radius: 7px;
 }
 .tools-board{
@@ -76,7 +76,22 @@ section{
     margin-top: 3px;
     position: relative;
 }
-
+.colors .option:nth-child(1){
+    background-color: #fff;
+    border: 1px solid #bfbfbf;
+}
+.colors .option:nth-child(2){
+    background-color: #000;
+}
+.colors .option:nth-child(3){
+    background-color: #E02020;
+}
+.colors .option:nth-child(4){
+    background-color: #6DD400;
+}
+.colors .option:nth-child(5){
+    background-color: #4A98F7;
+}
 .colors .option.selected::before{
     position: absolute;
     content: "";
