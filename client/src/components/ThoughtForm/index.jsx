@@ -50,7 +50,7 @@ const ThoughtForm = () => {
 
   return (
     <div>
-      <h3>What's on your techy mind?</h3>
+      <h3></h3>
 
       {Auth.loggedIn() ? (
         <>
@@ -89,10 +89,8 @@ const ThoughtForm = () => {
           </form>
         </>
       ) : (
-        <p>
-          You need to be logged in to share your thoughts. Please{' '}
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
-        </p>
+        <img className='imgbox' src="/inkflow-high-resolution-logo-white-on-transparent-background.png"  width={700} height={700} alt="A circle of paint around a paintbrush and Inkflow"/>
+          
       )}
     </div>
   );

@@ -8,13 +8,13 @@ const Footer = () => {
       <div className="container text-center mb-5">
         {location.pathname !== '/' && (
           <button
-            className="btn btn-dark mb-3"
+            className="btn mb-3"
             onClick={() => navigate(-1)}
           >
             &larr; Go Back
           </button>
         )}
-        <h4>
+        {/* <h4>
           Made with{' '}
           <span
             className="emoji"
@@ -25,7 +25,7 @@ const Footer = () => {
             ❤️
           </span>{' '}
           by the Tech Thoughts team.
-        </h4>
+        </h4> */}
       </div>
     </footer>
   );
