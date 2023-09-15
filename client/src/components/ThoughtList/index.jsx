@@ -24,7 +24,7 @@ const ThoughtList = ({
                 >
                   {thought.thoughtAuthor} <br />
                   <span style={{ fontSize: '1rem' }}>
-                    had this idea {thought.createdAt}
+                    had this idea at {thought.createdAt}
                   </span>
                 </Link>
               ) : (
