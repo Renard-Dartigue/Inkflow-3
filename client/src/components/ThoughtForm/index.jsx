@@ -50,7 +50,7 @@ const ThoughtForm = () => {
 
   return (
     <div>
-      <h3>What's on your techy mind?</h3>
+      <h3></h3>
 
       {Auth.loggedIn() ? (
         <>
@@ -68,7 +68,7 @@ const ThoughtForm = () => {
             <div className="col-12 col-lg-9">
               <textarea
                 name="thoughtText"
-                placeholder="Here's a new thought..."
+                placeholder="Share here!"
                 value={thoughtText}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
@@ -78,7 +78,7 @@ const ThoughtForm = () => {
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Thought
+                Add Idea
               </button>
             </div>
             {error && (
@@ -89,10 +89,8 @@ const ThoughtForm = () => {
           </form>
         </>
       ) : (
-        <p>
-          You need to be logged in to share your thoughts. Please{' '}
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
-        </p>
+        <img className='imgbox' src="/inkflow-high-resolution-logo-white-on-transparent-background.png"  width={700} height={700} alt="A circle of paint around a paintbrush and Inkflow"/>
+          
       )}
     </div>
   );
